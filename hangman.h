@@ -9,11 +9,14 @@
 class HangManGame
 {
 private:
-    std::vector<std::string> words;
     std::ofstream logFile;
+    std::vector<std::string> words;
+    std::string currentWord;
+    int usedTries;
 
 public:
     HangManGame();
     ~HangManGame();
     void AddLog(std::string &logText);
+    bool StartRound();
 };
