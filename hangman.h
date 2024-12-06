@@ -3,6 +3,7 @@
 #include <map>
 #include <fstream>
 #include <string>
+#include <set>
 
 #pragma once
 
@@ -12,11 +13,16 @@ private:
     std::ofstream logFile;
     std::vector<std::string> words;
     std::string currentWord;
-    int usedTries;
+    std::set<char> guessedLetters;
+    std::set<char> madeGuessed;
+    int triesLeft;
+    void AddLog(std::string &logText);
+    void PrintGuesses();
 
 public:
     HangManGame();
     ~HangManGame();
-    void AddLog(std::string &logText);
     bool StartRound();
+    void PlayRound();
+    void ResetGame();
 };

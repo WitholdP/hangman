@@ -10,6 +10,8 @@ int main()
 		{
 			break;
 		}
+		game.PlayRound();
+		game.ResetGame();
 	}
 
 	return 0;
