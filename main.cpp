@@ -1,10 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <map>
-
-using namespace std;
+#include "./hangman.h"
 
 int main()
 {
+	HangManGame game;
+
 	return 0;
 };
