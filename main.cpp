@@ -12,7 +12,9 @@ int main()
 		}
 		game.PlayRound();
 		game.ResetGame();
-	}
+	};
+
+	game.PrintScores();
 
 	return 0;
 };

@@ -3,6 +3,7 @@
 #include <map>
 #include <fstream>
 #include <string>
+#include <format>
 #include "./hangman.h"
 
 #define WORDS_FILE "words.txt"
@@ -12,7 +13,6 @@
 HangManGame::HangManGame()
 {
     triesLeft = NUMBER_OF_TRIES;
-    logFile.open(LOG_FILE);
 
     std::ifstream wordFile;
     wordFile.open(WORDS_FILE);
@@ -34,7 +34,10 @@ HangManGame::~HangManGame()
 
 void HangManGame::AddLog(std::string &logText)
 {
+    logFile.open(LOG_FILE);
+    std::cout << "ADDING LOG";
     logFile << logText;
+    logFile.close();
 }
 
 bool HangManGame::StartRound()
@@ -88,6 +91,8 @@ void HangManGame::PlayRound()
         {
             printf("You have guessed all the letters.\n");
             printf("You get %i points.\n", triesLeft);
+            std::string log = std::format("You guessed \"{}\" with: {} points!\n", currentWord, triesLeft);
+            AddLog(log);
             break;
         }
 
@@ -124,4 +129,20 @@ void HangManGame::ResetGame()
 {
     triesLeft = NUMBER_OF_TRIES;
     guessedLetters.clear();
+    madeGuessed.clear();
+}
+
+void HangManGame::PrintScores()
+{
+    printf("---------HIGH SCORES---------\n");
+    std::ifstream logFileRead(LOG_FILE);
+    if (logFileRead.is_open())
+    {
+        std::string line;
+        while (std::getline(logFileRead, line))
+        {
+            std::cout << line << std::endl;
+        }
+        logFileRead.close();
+    }
 }

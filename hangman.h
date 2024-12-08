@@ -16,8 +16,8 @@ private:
     std::set<char> guessedLetters;
     std::set<char> madeGuessed;
     int triesLeft;
-    void AddLog(std::string &logText);
     void PrintGuesses();
+    void AddLog(std::string &logText);
 
 public:
     HangManGame();
@@ -25,4 +25,5 @@ public:
     bool StartRound();
     void PlayRound();
     void ResetGame();
+    void PrintScores();
 };
